@@ -1,5 +1,15 @@
 body {
-    background: #E5EDF5;
+    background: #576574;
+}
+
+.container {
+    background-color: #E5EDF5;
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .label {

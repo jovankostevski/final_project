@@ -5,7 +5,10 @@ export default class App extends React.Component {
 
     render(){
         return(
-            <Login />
+            <div>
+                <Login />
+                <p>Or if you don't have an account, Register.</p>
+            </div>
         );
     };
 }
