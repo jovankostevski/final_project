@@ -7,7 +7,6 @@ export default class App extends React.Component {
         return(
             <div>
                 <Login />
-                <p>Or if you don't have an account, Register.</p>
             </div>
         );
     };

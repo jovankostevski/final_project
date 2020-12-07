@@ -1,8 +1,14 @@
-const { UserLoginSuccess } = require("../actions/UserActions");
+const { USER_LOGIN, CREATE_USER } = require("../actions/UserActions");
 
-const UserReducer = (state = [], action) => {
+const initialState = {
+    user: []
+}
+
+const UserReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UserLoginSuccess:
+        case USER_LOGIN:
+            return [...state, action.payload];
+        case CREATE_USER:
             return [...state, action.payload];
         default: return state;
     }

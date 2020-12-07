@@ -12,12 +12,7 @@ api.use(bodyParser.json());
 api.use(jwt({
     secret: config.Get('server').jwt_key,
     algorithms: [HS256]
-}).unless({
-    path: [
-        { url: '/api/v1/products', methods: ['POST'] }
-    ]
-})
-);
+}));
 
 api.post('/api/v1/products', Products.create);
 api.get('/api/v1/products', Products.getAll);

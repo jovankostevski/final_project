@@ -4,23 +4,28 @@ export const UserLoginRequest = (data) => {
     return dispatch => {
         axios ({
             url: "/api/v1/auth/login",
-            method: 'POST'
+            method: 'POST',
+            data: data
         })
-        .then(res => {dispatch(UserLoginSuccess(res.data))})
-        .catch(err => {dispatch(UserLoginFail(err))})
-    }
-}
+        .then(data => dispatch({
+            type: USER_LOGIN,
+            payload: data
+        }))
+        .catch(err => console.log(err));
+    };
+};
 
-export const UserLoginSuccess = (data) => {
-    return{
-        type: "LOGIN_SUCCESS",
-        payload: data
-    }
-}
-
-export const UserLoginFail = (err) => {
-    return{
-        type: "LOGIN_FAIL",
-        payload: err
-    }
-}
+export const UserCreateRequest = (data) => {
+    return dispatch => {
+        axios ({
+            url: "/api/v1/user/create",
+            method: 'POST',
+            data: data
+        })
+        .then(data => dispatch({
+            type: CREATE_USER,
+            payload: data
+        }))
+        .catch(err => console.log(err));
+    };
+};
