@@ -1,7 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { UserLoginRequest } from '../actions/UserActions';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import history from 'history/browser';
 
 export class Login extends React.Component {
 
@@ -9,7 +8,8 @@ export class Login extends React.Component {
         super(props);
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            jwt: ""
         };
     };
 
@@ -22,8 +22,18 @@ export class Login extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        this.props.UserLoginRequest(this.state);
-        useHistory.push('/products');
+        const user = {
+            email: this.state.email,
+            password: this.state.password
+        }
+        axios.post('/api/v1/user/create', { user })
+            .then(res => {
+                console.log(res);
+                history.push('/products');
+            })
+            .catch(err => {
+                console.log(err);
+            })
     };
 
     render(){
@@ -52,13 +62,3 @@ export class Login extends React.Component {
         );
     };
 };
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        UserLoginRequest: () => {
-            dispatch(UserLoginRequest())
-        }
-    };
-};
-
-export default connect(mapDispatchToProps)(Login);

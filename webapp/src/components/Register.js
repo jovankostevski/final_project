@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { UserCreateRequest } from '../actions/UserActions';
 import { Link } from 'react-router-dom';
+import history from 'history/browser';
+import axios from 'axios';
 
 export class Register extends React.Component {
 
@@ -27,7 +27,23 @@ export class Register extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        this.props.UserCreateRequest(this.state);
+        const user = {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            email: this.state.email,
+            date_of_birth: this.state.date_of_birth,
+            telephone: this.state.telephone,
+            country: this.state.country,
+            password: this.state.password
+        }
+        axios.post('/api/v1/user/create', { user })
+            .then(res => {
+                console.log(res);
+                history.push('/');
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
     
     render(){
@@ -91,13 +107,3 @@ export class Register extends React.Component {
         );
     };
 }
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        UserCreateRequest: () => {
-            dispatch(UserCreateRequest())
-        }
-    }
-}
-
-export default connect(mapDispatchToProps)(Register);

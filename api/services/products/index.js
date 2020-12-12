@@ -2,17 +2,12 @@ require('../../pkg/db');
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const jwt = require('express-jwt');
 const config = require('../../pkg/config');
 const Products = require('./handlers/products');
 
 const api = express();
 
 api.use(bodyParser.json());
-api.use(jwt({
-    secret: config.Get('server').jwt_key,
-    algorithms: [HS256]
-}));
 
 api.post('/api/v1/products', Products.create);
 api.get('/api/v1/products', Products.getAll);
@@ -26,9 +21,9 @@ api.use(function (err, req, res, next) {
     }
 });
 
-api.listen(config.Get('services').users.port, err => {
+api.listen(config.Get('services').prducts.port, err => {
     if (err) {
         return console.error(err);
     }
-    console.log(`Server started on port ${config.Get('services').users.port}`);
+    console.log(`Server started on port ${config.Get('services').prducts.port}`);
 });

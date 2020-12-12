@@ -21,7 +21,20 @@ export class NewProduct extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        this.props.UserCreateRequest(this.state);
+        const product = {
+            product_name: this.product_name,
+            product_description: this.product_description,
+            product_type: this.product_type,
+            purchase_date: this.product_date,
+            product_price: this.product_price
+        }
+        axios.post('/api/v1/user/create', { product })
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     render(){

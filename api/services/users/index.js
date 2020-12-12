@@ -11,10 +11,10 @@ const api = express();
 api.use(bodyParser.json());
 api.use(jwt({
     secret: config.Get('server').jwt_key,
-    algorithms: [HS256]
+    algorithms: ['HS256']
 }).unless({
     path: [
-        { url: '/api/v1/users', methods: ['POST'] }
+        { url: '/api/v1/users', methods: ['POST', 'GET'] }
     ]
 })
 );

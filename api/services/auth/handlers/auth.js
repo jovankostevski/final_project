@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../../../pkg/config');
 
-const login = (req, res) => {
+const login = async (req, res) => {
     let v = await Validator.Validate(req.body, Validator.UserLoginSchema);
     if (!v) {
         console.log('validation error');
@@ -32,7 +32,7 @@ const login = (req, res) => {
     }
 };
 
-const refreshToken = (req, res) => {
+const refreshToken = async (req, res) => {
     let token_payload = {
         id: req.user.id,
         email: req.user.email,
@@ -42,7 +42,7 @@ const refreshToken = (req, res) => {
     res.status(200).send({ jwt: token });
 };
 
-const logout = (req, res) => {
+const logout = async (req, res) => {
     res.status(201).send('ok');
 };
 

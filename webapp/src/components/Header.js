@@ -9,7 +9,7 @@ export default class Products extends React.Component {
             <div>
                 <button><Link to="/products">PRODUCTS</Link></button>
                 <button><Link to="/expenses">EXPENSES</Link></button>
-                <Avatar></Avatar>Gal Gadot             
+                <Avatar></Avatar>Jovan             
             </div>
         );
     };
