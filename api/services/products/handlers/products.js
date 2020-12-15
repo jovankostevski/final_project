@@ -1,6 +1,5 @@
 const ProductModel = require('../../../pkg/products');
 const Validator = require('../../../pkg/validator');
-const bcrypt = require('bcryptjs');
 
 const create = async (req, res) => {
     let v = await Validator.Validate(req.body, Validator.ProductCreationSchema);
@@ -9,7 +8,7 @@ const create = async (req, res) => {
         return res.status(400).send('Bad request [invalid data]');
     }
     try {
-        let out = await ProductModel.Create(userData);
+        let out = await ProductModel.Create(req.body);
         return res.status(201).send(out);
     } catch (err) {
         console.log(err);

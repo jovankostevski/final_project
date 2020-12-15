@@ -15,7 +15,7 @@ const create = async (req, res) => {
     }
     req.body.password = bcrypt.hashSync(req.body.password);
     try {
-        let out = await UserModel.Create(userData);
+        let out = await UserModel.Create(req.body);
         out.__v = null;
         out.password = null;
         return res.status(201).send(out);

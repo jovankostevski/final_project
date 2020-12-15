@@ -25,6 +25,7 @@ export class Expenses extends React.Component {
                     <option value="november">November</option>
                     <option value="december">December</option>
                 </select>
+                
             </div>
         );
     };

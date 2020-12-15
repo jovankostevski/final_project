@@ -7,7 +7,7 @@ const Product = mongoose.model(
         product_description: String,
         product_type: String,
         purchase_date: Date,
-        product_price: String,
+        product_price: Number
     },
     'products'
 );

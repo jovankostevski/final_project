@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import history from 'history/browser';
+import axios from 'axios';
 
 export class Login extends React.Component {
 
@@ -41,14 +42,14 @@ export class Login extends React.Component {
             <div className='container'>
                 <form onSubmit = {this.submitHandler}>
                     <label><p>E-mail</p>
-                        <input classname='input-field'
+                        <input className='input-field'
                             type = "email"
                             name =  "email"
                             onChange = {this.inputChangeHandler}
                         />
                     </label>
                     <label><p>Password</p>
-                        <input classname='input-field'
+                        <input className='input-field'
                             type = "password"
                             name =  "password"
                             onChange = {this.inputChangeHandler}

@@ -2,12 +2,14 @@ require('../../pkg/db');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const jwt = require('express-jwt');
 const config = require('../../pkg/config')
 const Auth = require('./handlers/auth');
 
 const api = express();
 
+api.use(cors());
 api.use(bodyParser.json());
 api.use(jwt({
         secret: config.Get('server').jwt_key,

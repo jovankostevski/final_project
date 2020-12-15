@@ -6,7 +6,7 @@
     "services": {
         "users": {"port": 10001},
         "auth": {"port": 10002},
-        "prducts": {"port": 10003},
+        "products": {"port": 10003},
         "proxy": {"port": 10000}
     },
     "db": {

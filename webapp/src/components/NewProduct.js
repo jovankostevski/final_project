@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export class NewProduct extends React.Component {
 
@@ -10,8 +11,8 @@ export class NewProduct extends React.Component {
             product_type: "",
             purchase_date: "",
             product_price: ""
-        }
-    }
+        };
+    };
 
     inputChangeHandler = (event) => {
         this.setState({
@@ -27,15 +28,15 @@ export class NewProduct extends React.Component {
             product_type: this.product_type,
             purchase_date: this.product_date,
             product_price: this.product_price
-        }
-        axios.post('/api/v1/user/create', { product })
+        };
+        axios.post('/api/v1/product/create', { product })
             .then(res => {
                 console.log(res);
             })
             .catch(err => {
                 console.log(err);
-            })
-    }
+            });
+    };
 
     render(){
         return(

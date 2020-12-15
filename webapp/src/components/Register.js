@@ -15,8 +15,8 @@ export class Register extends React.Component {
             telephone: "",
             country: "",
             password: ""
-        }
-    }
+        };
+    };
 
     inputChangeHandler = (event) => {
         this.setState({
@@ -35,65 +35,65 @@ export class Register extends React.Component {
             telephone: this.state.telephone,
             country: this.state.country,
             password: this.state.password
-        }
-        axios.post('/api/v1/user/create', { user })
+        };
+        axios.post('http://localhost:10001/api/v1/user/create', { user })
             .then(res => {
                 console.log(res);
                 history.push('/');
             })
             .catch(err => {
                 console.log(err);
-            })
-    }
+            });
+    };
     
     render(){
         return(
             <div className='container'>
                 <form onSubmit = {this.submitHandler}>
                     <label><p>First Name</p>
-                        <input 
+                        <input className='input-field'
                             type = "text"
                             name =  "first_name"
                             onChange = {this.inputChangeHandler}
                         />
                     </label>
                     <label><p>Last Name</p>
-                        <input 
+                        <input className='input-field'
                             type = "text"
                             name =  "last_name"
                             onChange = {this.inputChangeHandler}
                         />
                     </label>
                     <label><p>E-mail</p>
-                        <input 
+                        <input className='input-field'
                             type = "email"
                             name =  "email"
                             onChange = {this.inputChangeHandler}
                         />
                     </label>
                     <label><p>Date of Birth</p>
-                        <input 
+                        <input className='input-field'
                             type = "date"
                             name =  "date_of_birth"
                             onChange = {this.inputChangeHandler}
                         />
                     </label>
                     <label><p>Telephone</p>
-                        <input 
+                        <input className='input-field'
                             type = "text"
                             name =  "telephone"
                             onChange = {this.inputChangeHandler}
                         />
                     </label>
                     <label><p>Country</p>
-                        <input 
+                        <input className='input-field'
                             type = "text"
                             name =  "country"
                             onChange = {this.inputChangeHandler}
                         />
                     </label>
                     <label><p>Password</p>
-                        <input 
+                        <input className='input-field'
                             type = "password"
                             name =  "password"
                             onChange = {this.inputChangeHandler}

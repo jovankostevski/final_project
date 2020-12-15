@@ -1,16 +1,44 @@
 import React from 'react';
 import Header from './Header';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export class Products extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: [],
+            filter: ""
+        };
+    };
+
+    componentDidMount(){
+        axios.get(`https://localhost:10003/api/v1/products`)
+            .then(res => {
+                this.setState({ 
+                    products: res.data
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
+
+    filterHandler = (event) => {
+        this.setState({
+            ...this.state,
+           [event.target.name]: event.target.value
+        });
+    };
 
     render(){
         return(
             <div>
                 <Header/>
                 <h2>Products</h2>
-                <label for="filter">Filter by:</label>
-                <select name="filter" id="filter">
+                <label>Filter by:</label>
+                <select name="filter" onChange = {this.filterHandler}>
                     <option value="highest_price">Highest Price</option>
                     <option value="lowest_price">Lowest Price</option>
                     <option value="latest_purchase">Latest Purchase</option>
