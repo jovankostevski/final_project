@@ -36,14 +36,14 @@ export class Register extends React.Component {
             country: this.state.country,
             password: this.state.password
         };
-        axios.post('http://localhost:10001/api/v1/user/create', { user })
+        axios.post('http://localhost:10001/api/v1/users', user)
             .then(res => {
                 console.log(res);
                 history.push('/');
             })
             .catch(err => {
                 console.log(err);
-            });
+            })
     };
     
     render(){

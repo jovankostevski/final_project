@@ -1,25 +1,28 @@
 const proxy = require('express-http-proxy');
 const express = require('express');
 const config = require('../../pkg/config');
+const cors = require('cors');
 
-const app = express();
+const api = express();
 
-app.use('/api/v1/users', proxy(
+api.use('*', cors({ origin: '*' }));
+
+api.use('/api/v1/users', proxy(
     'http://localhost:10001', 
     { proxyReqPathResolver: () => 'http://localhost:10001/api/v1/users' }
 ));
-app.use('/api/v1/auth', proxy(
+api.use('/api/v1/auth', proxy(
     'http://localhost:10002', 
     { proxyReqPathResolver: () => 'http://localhost:10002/api/v1/auth' }
 ));
-app.use('/api/v1/files', proxy(
+api.use('/api/v1/products', proxy(
     'http://localhost:10003', 
-    { proxyReqPathResolver: () => 'http://localhost:10003/api/v1/files' }
+    { proxyReqPathResolver: () => 'http://localhost:10003/api/v1/products' }
 ));
 
-app.use('/', proxy('localhost:3000'));
+api.use('/', proxy('localhost:3000'));
 
-app.listen(config.Get('services').proxy.port, err => {
+api.listen(config.Get('services').proxy.port, err => {
     if (err) {
         return console.error(err);
     }

@@ -4,7 +4,7 @@ const UserCreationSchema = {
     first_name: 'required',
     last_name: 'required',
     email: 'required|email',
-    date_of_birth: 'required|dateFormat:DD-MM-YYYY',
+    date_of_birth: 'required',
     telephone: 'required',
     country: 'required',
     password: 'required'

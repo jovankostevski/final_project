@@ -16,7 +16,7 @@ api.use(jwt({
     algorithms: ['HS256']
 }).unless({
     path: [
-        { url: '/api/v1/users', methods: ['POST', 'GET'] }
+        { url: '/api/v1/users', methods: ['POST'] }
     ]
 })
 );

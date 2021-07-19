@@ -27,7 +27,7 @@ export class Login extends React.Component {
             email: this.state.email,
             password: this.state.password
         }
-        axios.post('/api/v1/user/create', { user })
+        axios.post('http://localhost:10002/api/v1/auth/login', user)
             .then(res => {
                 console.log(res);
                 history.push('/products');
